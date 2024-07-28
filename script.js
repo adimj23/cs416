@@ -11,13 +11,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const colorArray = [
         "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", 
-        "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf",
+        "#8c564b", "#e377c2", "#bcbd22", "#17becf",
         "#aec7e8", "#ffbb78", "#98df8a", "#ff9896", "#c5b0d5",
-        "#c49c94", "#f7b6d2", "#c7c7c7", "#dbdb8d", "#9edae5",
-        "#393b79", "#5254a3", "#6b6ecf", "#9c9ede", "#637939",
-        "#8ca252", "#b5cf6b", "#cedb9c", "#8c6d31", "#bd9e39",
-        "#e7ba52", "#e7cb94", "#843c39", "#ad494a", "#d6616b",
-        "#e7969c", "#7b4173", "#a55194", "#ce6dbd", "#de9ed6"
+        "#c49c94", "#f7b6d2", "#d4a5a5", "#ff6f61", "#c9d6e3",
+        "#6a1b9a", "#f57f17", "#f57c00", "#00796b", "#004d40",
+        "#8d6e63", "#ff7043", "#ffb74d", "#009688", "#d32f2f",
+        "#1976d2", "#7b1fa2", "#0288d1", "#004d40", "#2e7d32"
     ];
 
     // Apply this custom color array to the color scale
@@ -107,6 +106,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const years = ["1984", "2004", "2024"];
     let currentIndex = 0;
 
+    let filterCategory = "All";
+
     const writeups = {
         "1984": "The 1980s were filled with very fast paced teams like the Los Angeles \"Showtime\" Lakers and the Denver Nuggets. The league average pace was 101.43, higher than even today's average. However, with the 3-point line being brought to the NBA only five years prior, teams were still figuring out how to best utilize it, averaging only three 3-point attempts for every 100 field goal attempts.",
         "2004": "By 2004, league average pace had slowed down to a crawl at just 90.1 possessions per 48 minutes. Games were slow and inefficient, and teams like the Detroit Pistons and San Antonio Spurs set the tone of the era with slow offenses that were not particularly efficient, but stellar defenses. Around this time the NBA introduced several rules that freed up offensive movement and led to faster, higher scoring games in the following years.",
@@ -159,6 +160,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 .on("mouseout", function() {
                     tooltip.style("display", "none");
                 });
+            
+            circles.style("opacity", d => {
+
+                if (filterCategory === "All") return 1;
+
+                if (filterCategory === "Playoffs" && d.Playoffs) return 1;
+
+                if (filterCategory === "Non-playoffs" && !d.Playoffs) return 1;
+
+                return 0.1; 
+
+            });
 
             circles.exit().remove();
 
@@ -175,6 +188,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 .attr("font-size", "10px")
                 .attr("fill", "black")
                 .style("font-weight", d => d.Playoffs ? "bold" : "normal");
+            
+            labels.style("opacity", d => {
+
+                if (filterCategory === "All") return 1;
+
+                if (filterCategory === "Playoffs" && d.Playoffs) return 1;
+
+                if (filterCategory === "Non-playoffs" && !d.Playoffs) return 1;
+
+                return 0.1; 
+
+            });
 
             labels.exit().remove();
 
@@ -369,6 +394,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             updateButtons();
+
         });
 
     };
@@ -388,6 +414,8 @@ document.addEventListener("DOMContentLoaded", function () {
     d3.select("#left-arrow").on("click", function () {
         if (currentIndex > 0) {
             currentIndex--;
+            filterCategory = "All";
+            d3.select('input[name="filter"][value="All"]').property("checked", true);
             loadData(years[currentIndex]);
         }
     });
@@ -395,23 +423,39 @@ document.addEventListener("DOMContentLoaded", function () {
     d3.select("#right-arrow").on("click", function () {
         if (currentIndex < years.length - 1) {
             currentIndex++;
+            filterCategory = "All";
+            d3.select('input[name="filter"][value="All"]').property("checked", true);
             loadData(years[currentIndex]);
         }
     });
 
     d3.select("#year-1984").on("click", function () {
         currentIndex = 0;
+        filterCategory = "All";
+            d3.select('input[name="filter"][value="All"]').property("checked", true);
         loadData(years[currentIndex]);
     });
 
     d3.select("#year-2004").on("click", function () {
         currentIndex = 1;
+        filterCategory = "All";
+            d3.select('input[name="filter"][value="All"]').property("checked", true);
         loadData(years[currentIndex]);
     });
 
     d3.select("#year-2024").on("click", function () {
         currentIndex = 2;
+        filterCategory = "All";
+            d3.select('input[name="filter"][value="All"]').property("checked", true);
         loadData(years[currentIndex]);
+    });
+
+    d3.selectAll('input[name="filter"]').on("change", function () {
+
+        filterCategory = this.value; // Update filterCategory based on selected radio button
+
+        loadData(years[currentIndex]); // Reload data to apply the new filter
+
     });
 
     function wrap(text, width) {
@@ -439,5 +483,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
-
-

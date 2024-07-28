@@ -32,6 +32,16 @@
               
             </div>
             <div id="info-column">
+                <div id="legend">
+                    <h3>Legend</h3>
+                    <p><strong>Bolded teams:</strong> Made the playoffs.</p>
+                    <div id="filter-options">
+                        <p>Show:</p>
+                        <label><input type="radio" name="filter" value="All" checked> All Teams</label>
+                        <label><input type="radio" name="filter" value="Playoffs"> Playoff Teams</label>
+                        <label><input type="radio" name="filter" value="Non-playoffs"> Non-Playoff Teams</label>
+                    </div>
+                </div>
                 <div id="slide-info">
                     <h2>Additional Information</h2>
                     <p> Team labels that are <strong>bolded</strong> imply they made the playoffs that year</p>
@@ -39,6 +49,8 @@
                     <p id="info-text"></p>
                 </div>
             </div>
+            
+          </div>
         </div>
     </div>
     <script src="https://d3js.org/d3.v7.min.js"></script>

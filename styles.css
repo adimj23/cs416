@@ -114,8 +114,31 @@ button:disabled {
     background-color: #fff;
 }
 
+#legend {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+#filter-options {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+}
+
+#filter-options label {
+    margin-bottom: 5px;
+    display: flex; /* Align label text and input horizontally */
+    align-items: center;
+}
+
+#filter-options input[type="radio"] {
+    margin-right: 5px; /* Space between radio button and label text */
+}
+
 #info-column {
-    flex: 1;
+    flex: 2;
     margin-top: -16px;
     padding: 20px;
     background-color: #fff;

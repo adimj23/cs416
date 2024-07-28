@@ -143,6 +143,7 @@ button:disabled {
     padding: 20px;
     background-color: #fff;
     border-left: 1px solid #ccc;
+    height: fit-content;
 }
 
 #slide-info {

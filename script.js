@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             // Set slide info
-            d3.select("#info-text").html(`League Average 3PAr: ${Math.round(avg3PAr*100)}%<br>League Average TS%: ${Math.round(avgTS*100)}%<br><br>${writeups[year]}`);
+            d3.select("#info-text").html(`<h2>${year}</h2>League Average 3PAr: ${Math.round(avg3PAr*100)}%<br>League Average TS%: ${Math.round(avgTS*100)}%<br><br>${writeups[year]}`);
 
             if (year === "1984") {
                 const denverNuggets = data.find(d => d.Team === "Denver Nuggets");

@@ -1,36 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CS 416: Narrative Visualization</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f8f9fa;
-      font-family: 'Arial', sans-serif;
-    }
-    .container {
-      text-align: center;
-      padding: 20px;
-      border: 1px solid #dee2e6;
-      border-radius: 5px;
-      background-color: #ffffff;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Offensive Evolution: 1984, 2004, 2024</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1 class="display-4">CS 416: Narrative Visualization</h1>
-  </div>
-  <!-- Bootstrap JS and dependencies -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div id="container">
+        <div id="header">
+            <h1>Narrative Visualization: NBA Offensive Evolution</h1>
+            <p>Explore the changes in NBA offenses across eras from 1984, 2004, and 2024.</p>
+        </div>
+        <div id="stat-explanations">
+          <h3>Stat Definitions</h3>
+          <p><strong>Offensive Rating (ORtg):</strong> Measures the number of points scored per 100 possessions. A higher ORtg indicates a more efficient offense.</p>
+          <p><strong>Pace:</strong> Represents the number of possessions per game. A higher pace indicates a faster game with more opportunities for scoring.</p>
+          <p><strong>3-Point Attempt Rate (3PAr):</strong> The proportion of a team's field goal attempts that are three-pointers. A higher value indicates a greater emphasis on three-point shooting.</p>
+          <p><strong>True Shooting Percentage (TS%):</strong> Measures a player's or team's scoring efficiency by considering field goals, three-pointers, and free throws. A higher TS% means better overall shooting efficiency.</p>
+        </div>
+        <div id="content">
+            <div id="scatterplot-container">
+                <div id="scatterplot"></div>
+                <div id="buttons" class="button-container">
+                  <button id="left-arrow">&larr;</button>
+                  <button id="year-1984">1984</button>
+                  <button id="year-2004">2004</button>
+                  <button id="year-2024">2024</button>
+                  <button id="right-arrow">&rarr;</button>
+                </div>
+              
+            </div>
+            <div id="info-column">
+                <div id="slide-info">
+                    <h2>Additional Information</h2>
+                    <p> Team labels that are <strong>bolded</strong> imply they made the playoffs that year</p>
+                    <p id="info-note">Hover over a team for more information.</p>
+                    <p id="info-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

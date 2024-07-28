@@ -453,7 +453,7 @@ document.addEventListener("DOMContentLoaded", function () {
     d3.selectAll('input[name="filter"]').on("change", function () {
 
         filterCategory = this.value; // Update filterCategory based on selected radio button
-
+        console.log(filterCategory);
         loadData(years[currentIndex]); // Reload data to apply the new filter
 
     });
